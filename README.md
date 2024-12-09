@@ -38,7 +38,7 @@
         <label for="name">Navn:</label>
         <input type="text" id="name" name="name" required>
         
-        <label for="email">Email:</label>
+        <label for="email">Smartpark@gmail.com:</label>
         <input type="email" id="email" name="email" required>
         
         <label for="message">Besked:</label>
