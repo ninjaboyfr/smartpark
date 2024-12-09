@@ -93,3 +93,62 @@ footer {
   background: #333;
   color: #fff;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload et billede</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    input[type="file"] {
+      margin: 20px 0;
+    }
+    img {
+      max-width: 100%;
+      max-height: 300px;
+      margin-top: 20px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload og vis et billede</h1>
+  <p>Vælg et billede nedenfor, og det vil blive vist her på siden.</p>
+  <input type="file" id="imageInput" accept="image/*">
+  <div>
+    <img id="preview" alt="Billedet vil blive vist her" style="display:none;">
+  </div>
+
+  <script>
+    // Hent input- og billed-elementerne
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+
+    // Tilføj en eventlistener for at opdage ændringer
+    imageInput.addEventListener('change', (event) => {
+      const file = event.target.files[0]; // Få det valgte filobjekt
+      if (file) {
+        const reader = new FileReader(); // Lav en fil-læser
+
+        // Når filen er læst, vis billedet
+        reader.onload = (e) => {
+          preview.src = e.target.result; // Sæt billedets kilde til filens data
+          preview.style.display = 'block'; // Vis billedet
+        };
+
+        reader.readAsDataURL(file); // Læs filen som en data-URL
+      } else {
+        preview.style.display = 'none'; // Skjul billedet, hvis ingen fil er valgt
+      }
+    });
+  </script>
+</body>
+</html>
